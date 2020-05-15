@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
 
 namespace EmployeeManagement.web.Pages
@@ -18,17 +19,14 @@ namespace EmployeeManagement.web.Pages
 
         [Parameter]
         public string Id { get; set; }
-
-        public string DepartmentId { get; set; }
-
+        
         public Employee Employee { get; set; } = new Employee();
         public List<Department> Departments = new List<Department>();
 
         protected override async Task OnInitializedAsync()
         {
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
-            Departments = (await DepatmentService.GetDepartments()).ToList();
-            DepartmentId = Employee.DepartmentId.ToString();
+            Departments = (await DepatmentService.GetDepartments()).ToList();            
         }
     }
 }
