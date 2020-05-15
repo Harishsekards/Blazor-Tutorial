@@ -15,7 +15,7 @@ namespace EmployeeManagement.API.Models
         {
             this._context = context;
         }
-        public async Task<IEnumerable<Department>> Departments()
+        public async Task<IEnumerable<Department>> GetDepartments()
         {
             return await _context.Departments.ToListAsync();
         }

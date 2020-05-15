@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EmployeeManagement.API.Models
+namespace EmployeeManagement.web.Services
 {
-    public interface IDepartmentRepository
+    public interface IDepatmentService
     {
-        Task<Department> GetDepartmentById(int id);
         Task<IEnumerable<Department>> GetDepartments();
+        Task<Department> GetDepartmentById(int id);
     }
 }

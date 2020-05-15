@@ -32,7 +32,18 @@ namespace EmployeeManagement.web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddServerSideBlazor();            
+            services.AddServerSideBlazor();
+            services.AddHttpClient<IDepatmentService, DepatmentService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44386/");
+            }).ConfigurePrimaryHttpMessageHandler(() => {
+                var handler = new HttpClientHandler();
+                if (hostingEnvironment.IsDevelopment())
+                {
+                    handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                }
+                return handler;
+            });
             services.AddHttpClient<IEmployeeService,EmployeeService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44386/");
