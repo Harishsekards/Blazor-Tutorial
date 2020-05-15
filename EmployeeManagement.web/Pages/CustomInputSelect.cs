@@ -25,19 +25,6 @@ namespace EmployeeManagement.web.Pages
                     return false;
                 }
             }
-            else if (typeof(TValue) == typeof(Guid))
-            {
-                if (int.TryParse(value, out var intResult))
-                {
-                    result = (TValue)(object)intResult;
-                    validationErrorMessage = $"Guid {value} is not an Integer.Please do something";
-                    return false;
-                }
-                else
-                {
-                    return base.TryParseValueFromString(value, out result, out validationErrorMessage);
-                }
-            }
             else
             {
                 return base.TryParseValueFromString(value, out result, out validationErrorMessage);
