@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagement.Models.CustomValidators;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -18,6 +19,7 @@ namespace EmployeeManagement.Models
         public string LastName { get; set; }
 
         [EmailAddress]
+        [EmailDomainValidator(AllowedDomain ="mvc.com")]
         [Required]
         public string Email { get; set; }
 
