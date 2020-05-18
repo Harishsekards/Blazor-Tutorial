@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using AutoMapper;
+using EmployeeManagement.web.Models;
 
 namespace EmployeeManagement.web
 {
@@ -33,6 +34,8 @@ namespace EmployeeManagement.web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddAutoMapper(typeof(EmployeeProfile));
+            
             services.AddHttpClient<IDepatmentService, DepatmentService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44386/");
