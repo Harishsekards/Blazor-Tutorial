@@ -33,9 +33,7 @@ namespace EmployeeManagement.web.Models
         public Gender Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int DepartmentId { get; set; }
-        public string PhotoPath { get; set; }
-
-        [ValidateComplexType]
-        public Department Department { get; set; } = new Department();        
+        public string PhotoPath { get; set; }        
+        public Department Department { get; set; }
     }
 }

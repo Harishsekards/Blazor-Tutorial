@@ -97,25 +97,22 @@ namespace EmployeeManagement.API.Controllers
             }
         }
 
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult<Employee>> UpdateEmployee(int id,Employee updatedEmployee)
+        [HttpPut()]
+        public async Task<ActionResult<Employee>> UpdateEmployee(Employee updatedEmployee)
         {
             try
             {
-                if (id != updatedEmployee.EmployeeId)
-                {
-                    return BadRequest("Invalid Data");
-                }
-                var employee = _employeeRepository.GetEmployeeById(id);
+               
+                var employee = _employeeRepository.GetEmployeeById(updatedEmployee.EmployeeId);
                 if (employee == null)
                 {
-                    return NotFound($"Employee with id {id} is not found");
+                    return NotFound($"Employee with id {updatedEmployee.EmployeeId} is not found");
                 }
                 return await _employeeRepository.Update(updatedEmployee);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from Database");
             }
         }

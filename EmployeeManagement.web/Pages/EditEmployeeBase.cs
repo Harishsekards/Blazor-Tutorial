@@ -22,6 +22,9 @@ namespace EmployeeManagement.web.Pages
         [Inject]
         public IMapper Mapper{ get; set; }
 
+        [Inject]
+        public NavigationManager Navigation { get; set; }
+
         [Parameter]
         public string Id { get; set; }
         
@@ -47,9 +50,14 @@ namespace EmployeeManagement.web.Pages
             //EditEmployeeModel.PhotoPath = Employee.PhotoPath;            
         }
 
-        protected void HandleSubmit()
+        protected async Task HandleSubmit()
         {
-
+            Mapper.Map(EditEmployeeModel,Employee);
+            var result = await EmployeeService.UpdateEmployee(Employee);
+            if (result != null)
+            {
+                Navigation.NavigateTo("/");
+            }
         }
     }
 }
