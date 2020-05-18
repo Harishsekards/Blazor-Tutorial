@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.Models;
+using EmployeeManagement.web.Models;
 using EmployeeManagement.web.Services;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -21,12 +22,27 @@ namespace EmployeeManagement.web.Pages
         public string Id { get; set; }
         
         public Employee Employee { get; set; } = new Employee();
+        public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
+
         public List<Department> Departments = new List<Department>();
 
         protected override async Task OnInitializedAsync()
         {
             Employee = await EmployeeService.GetEmployee(int.Parse(Id));
-            Departments = (await DepatmentService.GetDepartments()).ToList();            
+            Departments = (await DepatmentService.GetDepartments()).ToList();
+            EditEmployeeModel.FirstName = Employee.FirstName;
+            EditEmployeeModel.LastName = Employee.LastName;
+            EditEmployeeModel.Email = Employee.Email;
+            EditEmployeeModel.ConfirmEmail = Employee.Email;
+            EditEmployeeModel.Department = Employee.Department;
+            EditEmployeeModel.DepartmentId = Employee.DepartmentId;
+            EditEmployeeModel.Gender = Employee.Gender;
+            EditEmployeeModel.PhotoPath = Employee.PhotoPath;            
+        }
+
+        protected void HandleSubmit()
+        {
+
         }
     }
 }
