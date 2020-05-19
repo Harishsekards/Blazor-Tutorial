@@ -81,7 +81,7 @@ namespace EmployeeManagement.API.Controllers
                 {
                     return BadRequest();
                 }
-                var model = _employeeRepository.GetEmployeeByEmail(newEmployee.Email);
+                var model = await _employeeRepository.GetEmployeeByEmail(newEmployee.Email);
                 if (model != null)
                 {
                     ModelState.AddModelError("email","Email already Exists");
