@@ -26,7 +26,8 @@ namespace EmployeeManagement.web.Pages
         public NavigationManager Navigation { get; set; }
 
         [Parameter]
-        public string Id { get; set; }        
+        public string Id { get; set; }
+        public string PageHeaderText { get; set; }
         public Employee Employee { get; set; } = new Employee();
         public EditEmployeeModel EditEmployeeModel { get; set; } = new EditEmployeeModel();
 
@@ -37,10 +38,12 @@ namespace EmployeeManagement.web.Pages
             int.TryParse(Id,out int employeeId);
             if (employeeId != 0)
             {
+                PageHeaderText = "Edit Employee";
                 Employee = await EmployeeService.GetEmployee(employeeId);
             }
             else
             {
+                PageHeaderText = "Create Employee";
                 Employee = new Employee()
                 {
                     DepartmentId = 1,
@@ -58,11 +61,11 @@ namespace EmployeeManagement.web.Pages
             Mapper.Map(EditEmployeeModel,Employee);
             Employee result = null;
             if (Employee.EmployeeId != 0)
-            {
+            {                
                 result = await EmployeeService.UpdateEmployee(Employee);
             }
             else
-            {
+            {                
                 result = await EmployeeService.CreateEmployee(Employee);
             }
             
