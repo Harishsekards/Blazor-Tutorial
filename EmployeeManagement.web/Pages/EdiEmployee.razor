@@ -4,8 +4,8 @@
 
 
     <EditForm Model="@EditEmployeeModel" OnValidSubmit="HandleSubmit">
-        <DataAnnotationsValidator/>
-        <ValidationSummary/>
+        <DataAnnotationsValidator />
+        <ValidationSummary />
         <h3>@PageHeaderText</h3>
         <hr />
         <div class="form-group row">
@@ -23,7 +23,7 @@
             </label>
             <div class="col-sm-10">
                 <InputText id="lastName" class="form-control" placeholder="LastName" @bind-Value="EditEmployeeModel.LastName" />
-                <ValidationMessage For="@(()=>EditEmployeeModel.LastName)"/>
+                <ValidationMessage For="@(()=>EditEmployeeModel.LastName)" />
             </div>
         </div>
         <div class="form-group row">
@@ -32,14 +32,14 @@
             </label>
             <div class="col-sm-10">
                 <InputText id="email" class="form-control" placeholder="Email" @bind-Value="EditEmployeeModel.Email"></InputText>
-                <ValidationMessage For="@(()=>EditEmployeeModel.Email)"/>
+                <ValidationMessage For="@(()=>EditEmployeeModel.Email)" />
             </div>
         </div>
         <div class="form-group row">
             <label for="confirmemail" class="col-sm-2 col-form-label">ConfirmEmail</label>
             <div class="col-sm-10">
                 <InputText id="confirmemail" class="form-control" placeholder="Confirm Email" @bind-Value="EditEmployeeModel.ConfirmEmail"></InputText>
-                <ValidationMessage For="(()=>EditEmployeeModel.ConfirmEmail)"/>
+                <ValidationMessage For="(()=>EditEmployeeModel.ConfirmEmail)" />
             </div>
         </div>
         <div class="form-group row">
@@ -71,6 +71,10 @@
             <div class="col-sm-10">
                 <InputDate id="dateofbirth" @bind-Value="EditEmployeeModel.DateOfBirth" class="form-control"></InputDate>
             </div>
-        </div>        
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        @if (Employee.EmployeeId != 0)
+        {
+            <button type="button" class="btn btn-danger" @onclick="Delete">Delete</button>
+        }
     </EditForm>
