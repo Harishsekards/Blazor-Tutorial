@@ -8,6 +8,6 @@
 <div class="card-deck">
     @foreach (var employee in Employees)
     {
-        <DisplayEmployees Employee ="employee" ShowFooter="ShowFooter" OnEmployeeSelection="EmployeeSelected"></DisplayEmployees>   
+        <DisplayEmployees Employee ="employee" ShowFooter="ShowFooter" OnEmployeeSelection="EmployeeSelected" OnEmployeeDeleted="EmployeeDeleted"></DisplayEmployees>   
     }
 </div>

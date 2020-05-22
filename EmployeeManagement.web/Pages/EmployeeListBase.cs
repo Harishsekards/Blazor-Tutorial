@@ -38,6 +38,11 @@ namespace EmployeeManagement.web.Pages
             }
         }
 
+        protected async Task EmployeeDeleted()
+        {
+            Employees = (await EmployeeService.GetEmployees()).ToList();
+        }
+
         //private void LoadEmployee()
         //{
         //    Employee e1 = new Employee()
